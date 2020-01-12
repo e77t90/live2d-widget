@@ -6,7 +6,7 @@
 function loadWidget(waifuPath, apiPath) {
 	localStorage.removeItem("waifu-display");
 	sessionStorage.removeItem("waifu-text");
-	document.body.insertAdjacentHTML("beforeend", `<div id="waifu">
+	document.body.insertAdjacentHTML("beforeend", `<div id="waifu" style="z-index: 10;">
 			<div id="waifu-tips"></div>
 			<canvas id="live2d" width="300" height="300"></canvas>
 			<div id="waifu-tool">
@@ -146,12 +146,18 @@ function loadWidget(waifuPath, apiPath) {
 		}
 	}
 
+	function getRandomInt(min, max) {
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
 	function initModel() {
-		var modelId = localStorage.getItem("modelId"),
-			modelTexturesId = localStorage.getItem("modelTexturesId");
+		var modelId = 4 //localStorage.getItem("modelId"),
+			modelTexturesId = getRandomInt(1, 156) //localStorage.getItem("modelTexturesId");
 		if (modelId == null) {
 			// 首次访问加载 指定模型 的 指定材质
-			var modelId = 4, // 模型 ID
+			var modelId = 1, // 模型 ID
 				modelTexturesId = 53; // 材质 ID
 		}
 		loadModel(modelId, modelTexturesId);
