@@ -39,7 +39,7 @@ function loadWidget(waifuPath, apiPath) {
 		document.querySelector("#waifu-tool .fa-user-circle").addEventListener("click", loadOtherModel);
 		document.querySelector("#waifu-tool .fa-street-view").addEventListener("click", loadRandModel);
 		document.querySelector("#waifu-tool .fa-camera-retro").addEventListener("click", () => {
-			showMessage("照好了嘛，是不是很可爱呢？", 6000, 9);
+			showMessage("照好了嘛，是不是很可愛呢？", 6000, 9);
 			Live2D.captureName = "photo.png";
 			Live2D.captureFrame = true;
 		});
@@ -48,7 +48,7 @@ function loadWidget(waifuPath, apiPath) {
 		});
 		document.querySelector("#waifu-tool .fa-times").addEventListener("click", () => {
 			localStorage.setItem("waifu-display", Date.now());
-			showMessage("愿你有一天能与重要的人重逢。", 2000, 11);
+			showMessage("願你有一天能與重要的人重逢。", 2000, 11);
 			document.getElementById("waifu").style.bottom = "-500px";
 			setTimeout(() => {
 				document.getElementById("waifu").style.display = "none";
@@ -58,13 +58,13 @@ function loadWidget(waifuPath, apiPath) {
 		var devtools = () => {};
 		console.log("%c", devtools);
 		devtools.toString = () => {
-			showMessage("哈哈，你打开了控制台，是想要看看我的小秘密吗？", 6000, 9);
+			showMessage("哈哈，你打開了控制枱，是想要看看我的小祕密嗎？", 6000, 9);
 		};
 		window.addEventListener("copy", () => {
-			showMessage("你都复制了些什么呀，转载要记得加上出处哦！", 6000, 9);
+			showMessage("你都複製了些什麼呀，轉載要記得加上出處哦！", 6000, 9);
 		});
 		window.addEventListener("visibilitychange", () => {
-			if (!document.hidden) showMessage("哇，你终于回来了～", 6000, 9);
+			if (!document.hidden) showMessage("哇，你終於回來了～", 6000, 9);
 		});
 	}
 	registerEventListener();
@@ -73,24 +73,24 @@ function loadWidget(waifuPath, apiPath) {
 		var text;
 		if (location.pathname === "/") { // 如果是主页
 			var now = new Date().getHours();
-			if (now > 5 && now <= 7) text = "早上好！一日之计在于晨，美好的一天就要开始了。";
-			else if (now > 7 && now <= 11) text = "上午好！工作顺利嘛，不要久坐，多起来走动走动哦！";
-			else if (now > 11 && now <= 13) text = "中午了，工作了一个上午，现在是午餐时间！";
-			else if (now > 13 && now <= 17) text = "午后很容易犯困呢，今天的运动目标完成了吗？";
-			else if (now > 17 && now <= 19) text = "傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红～";
-			else if (now > 19 && now <= 21) text = "晚上好，今天过得怎么样？";
-			else if (now > 21 && now <= 23) text = ["已经这么晚了呀，早点休息吧，晚安～", "深夜时要爱护眼睛呀！"];
-			else text = "你是夜猫子呀？这么晚还不睡觉，明天起的来嘛？";
+			if (now > 5 && now <= 7) text = "早上好！一日之計在於晨，美好的一天就要開始了。";
+			else if (now > 7 && now <= 11) text = "上午好！工作順利嘛，不要久坐，多起來走動走動哦！";
+			else if (now > 11 && now <= 13) text = "中午了，工作了一個上午，現在是午餐時間！";
+			else if (now > 13 && now <= 17) text = "午後很容易犯困呢，今天的運動目標完成了嗎？";
+			else if (now > 17 && now <= 19) text = "傍晚了！窗外夕陽的景色很美麗呢，最美不過夕陽紅～";
+			else if (now > 19 && now <= 21) text = "晚上好，今天過得怎麼樣？";
+			else if (now > 21 && now <= 23) text = ["已經這麼晚了呀，早點休息吧，晚安～", "深夜時要愛護眼睛呀！"];
+			else text = "你是夜貓子呀？這麼晚還不睡覺，明天起的來嘛？";
 		} else if (document.referrer !== "") {
 			var referrer = new URL(document.referrer),
 				domain = referrer.hostname.split(".")[1];
-			if (location.hostname == referrer.hostname) text = `欢迎阅读<span>「${document.title.split(" - ")[0]}」</span>`;
-			else if (domain == "baidu") text = `Hello！来自 百度搜索 的朋友<br>你是搜索 <span>${referrer.search.split("&wd=")[1].split("&")[0]}</span> 找到的我吗？`;
-			else if (domain == "so") text = `Hello！来自 360搜索 的朋友<br>你是搜索 <span>${referrer.search.split("&q=")[1].split("&")[0]}</span> 找到的我吗？`;
-			else if (domain == "google") text = `Hello！来自 谷歌搜索 的朋友<br>欢迎阅读<span>「${document.title.split(" - ")[0]}」</span>`;
-			else text = `Hello！来自 <span>${referrer.hostname}</span> 的朋友`;
+			if (location.hostname == referrer.hostname) text = `歡迎閲讀<span>「${document.title.split(" - ")[0]}」</span>`;
+			else if (domain == "baidu") text = `Hello！來自 百度搜索 的朋友<br>你是搜索 <span>${referrer.search.split("&wd=")[1].split("&")[0]}</span> 找到的我嗎？`;
+			else if (domain == "so") text = `Hello！來自 360搜索 的朋友<br>你是搜索 <span>${referrer.search.split("&q=")[1].split("&")[0]}</span> 找到的我嗎？`;
+			else if (domain == "google") text = `Hello！來自 谷歌搜索 的朋友<br>歡迎閲讀<span>「${document.title.split(" - ")[0]}」</span>`;
+			else text = `Hello！來自 <span>${referrer.hostname}</span> 的朋友`;
 		} else {
-			text = `欢迎阅读<span>「${document.title.split(" - ")[0]}」</span>`;
+			text = `歡迎閲讀<span>「${document.title.split(" - ")[0]}」</span>`;
 		}
 		showMessage(text, 7000, 8);
 	}
@@ -99,7 +99,7 @@ function loadWidget(waifuPath, apiPath) {
 	var userAction = false,
 		userActionTimer = null,
 		messageTimer = null,
-		messageArray = ["好久不见，日子过得好快呢……", "大坏蛋！你都多久没理人家了呀，嘤嘤嘤～", "嗨～快来逗我玩吧！", "拿小拳拳锤你胸口！", "记得把小家加入 Adblock 白名单哦！"];
+		messageArray = ["好久不見，日子過得好快呢……", "大壞蛋！你都多久沒理人家了呀，嚶嚶嚶～", "嗨～快來逗我玩吧！", "拿小拳拳錘你胸口！", "記得把小家加入 Adblock 白名單哦！"];
 	window.addEventListener("mousemove", () => userAction = true);
 	window.addEventListener("keydown", () => userAction = true);
 	setInterval(() => {
@@ -119,7 +119,7 @@ function loadWidget(waifuPath, apiPath) {
 		fetch("https://v1.hitokoto.cn")
 			.then(response => response.json())
 			.then(result => {
-				var text = `这句一言来自 <span>「${result.from}」</span>，是 <span>${result.creator}</span> 在 hitokoto.cn 投稿的。`;
+				var text = `這句一言來自 <span>「${result.from}」</span>，是 <span>${result.creator}</span> 在 hitokoto.cn 投稿的。`;
 				showMessage(result.hitokoto, 6000, 9);
 				setTimeout(() => {
 					showMessage(text, 4000, 9);
@@ -199,7 +199,7 @@ function loadWidget(waifuPath, apiPath) {
 		localStorage.setItem("modelId", modelId);
 		if (modelTexturesId === undefined) modelTexturesId = 0;
 		localStorage.setItem("modelTexturesId", modelTexturesId);
-		loadlive2d("live2d", `${apiPath}/get/?id=${modelId}-${modelTexturesId}`, console.log(`Live2D 模型 ${modelId}-${modelTexturesId} 加载完成`));
+		loadlive2d("live2d", `${apiPath}/get/?id=${modelId}-${modelTexturesId}`, console.log(`Live2D 模型 ${modelId}-${modelTexturesId} 加載完成`));
 	}
 
 	function loadRandModel() {
@@ -209,7 +209,7 @@ function loadWidget(waifuPath, apiPath) {
 		fetch(`${apiPath}/rand_textures/?id=${modelId}-${modelTexturesId}`)
 			.then(response => response.json())
 			.then(result => {
-				if (result.textures.id == 1 && (modelTexturesId == 1 || modelTexturesId == 0)) showMessage("我还没有其他衣服呢！", 4000, 10);
+				if (result.textures.id == 1 && (modelTexturesId == 1 || modelTexturesId == 0)) showMessage("我還沒有其他衣服呢！", 4000, 10);
 				else showMessage("我的新衣服好看嘛？", 4000, 10);
 				loadModel(modelId, result.textures.id);
 			});
