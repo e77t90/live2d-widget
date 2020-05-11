@@ -73,7 +73,7 @@
 
 #waifu #live2d {
 	cursor: grab;
-	position: relative;
+	position: absolute;
 }
 
 #waifu #live2d:active {

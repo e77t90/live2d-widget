@@ -6,7 +6,7 @@
 function loadWidget(waifuPath, apiPath) {
 	localStorage.removeItem("waifu-display");
 	sessionStorage.removeItem("waifu-text");
-	document.body.insertAdjacentHTML("beforeend", `<div id="waifu" style="z-index: 10;">
+	document.body.insertAdjacentHTML("beforeend", `<div id="waifu" style="z-index: 1000; width: 300px; height: 300px;">
 			<div id="waifu-tips"></div>
 			<canvas id="live2d" width="300" height="300"></canvas>
 			<div id="waifu-tool">
@@ -19,6 +19,10 @@ function loadWidget(waifuPath, apiPath) {
 				<span class="fa fa-lg fa-times"></span>
 			</div>
 		</div>`);
+
+	// Make the DIV element draggable:
+	dragElement();
+
 	// https://stackoverflow.com/questions/24148403/trigger-css-transition-on-appended-element
 	setTimeout(() => {
 		document.getElementById("waifu").style.bottom = 0;
@@ -84,7 +88,7 @@ function loadWidget(waifuPath, apiPath) {
 		} else if (document.referrer !== "") {
 			var referrer = new URL(document.referrer),
 				domain = referrer.hostname.split(".")[1];
-			if (location.hostname == referrer.hostname) text = `欢迎阅读<span>「${document.title.split(" - ")[0]}」</span>`;
+			if (location.hostname == referrer.hostname) text = `欢迎收看<span>「${document.title.split(" - ")[0]}」</span>`;
 			else if (domain == "baidu") text = `Hello！来自 百度搜索 的朋友<br>你是搜索 <span>${referrer.search.split("&wd=")[1].split("&")[0]}</span> 找到的我吗？`;
 			else if (domain == "so") text = `Hello！来自 360搜索 的朋友<br>你是搜索 <span>${referrer.search.split("&q=")[1].split("&")[0]}</span> 找到的我吗？`;
 			else if (domain == "google") text = `Hello！来自 谷歌搜索 的朋友<br>欢迎阅读<span>「${document.title.split(" - ")[0]}」</span>`;
@@ -254,3 +258,47 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 		loadWidget(waifuPath, apiPath);
 	}
 }
+
+// Make the DIV element draggable:
+function dragElement() {
+	var elmnt = document.getElementById("waifu");
+	console.log({elmnt});
+	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+	if (document.getElementById("live2d")) {
+	  /* if present, the header is where you move the DIV from:*/
+	  document.getElementById("live2d").onmousedown = dragMouseDown;
+	} else {
+	  /* otherwise, move the DIV from anywhere inside the DIV:*/
+	  elmnt.onmousedown = dragMouseDown;
+	}
+  
+	function dragMouseDown(e) {
+	  e = e || window.event;
+	  e.preventDefault();
+	  // get the mouse cursor position at startup:
+	  pos3 = e.clientX;
+	  pos4 = e.clientY;
+	  document.onmouseup = closeDragElement;
+	  // call a function whenever the cursor moves:
+	  document.onmousemove = elementDrag;
+	}
+  
+	function elementDrag(e) {
+	  e = e || window.event;
+	  e.preventDefault();
+	  // calculate the new cursor position:
+	  pos1 = pos3 - e.clientX;
+	  pos2 = pos4 - e.clientY;
+	  pos3 = e.clientX;
+	  pos4 = e.clientY;
+	  // set the element's new position:
+	  elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+	  elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+	}
+  
+	function closeDragElement() {
+	  /* stop moving when mouse button is released:*/
+	  document.onmouseup = null;
+	  document.onmousemove = null;
+	}
+  }
